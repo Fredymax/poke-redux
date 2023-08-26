@@ -1,0 +1,70 @@
+*,
+::after,
+::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --fontPoppins: 'Poppins', sans-serif;
+  --fontSed: 'Sedgwick Ave Display', cursive;
+
+  --bg-light: rgb(250 250 250);
+  --bg-white: rgb(255 255 255);
+  --color-yellow: rgb(255 203 5);
+  --color-darkblue: rgb(29 44 94);
+}
+
+.bg-light {
+  background-color: var(--bg-light);
+}
+
+.bg-white {
+  background-color: var(--bg-white);
+}
+
+.font-sed {
+  font-family: var(--fontSed);
+}
+
+.font-poppins {
+  font-family: var(--fontPoppins);
+}
+
+body {
+  margin: 0;
+  font-size: 16px;
+}
+
+.main {
+  min-block-size: 100vh;
+  inline-size: 100%;
+  background: var(--bg-light);
+}
+
+.title {
+  font-size: 3.5em;
+  color: rgb(255 203 5);
+  text-shadow: 3px 3px 0 rgb(29 44 94);
+  user-select: none;
+}
+
+.text-primary {
+  color: var(--color-yellow);
+  text-shadow: 3px 3px 0 var(--color-darkblue);
+}
+
+.bg-gradient-primary {
+  background: url('/assets/images/pikachu.png'), linear-gradient(to bottom right, rgb(58 93 169), rgb(29 44 94));
+  background-repeat: no-repeat;
+  background-size: 35%, 100%;
+  background-position: right center;
+}
+
+@media (max-width: 767px) {
+  .bg-gradient-primary {
+    background-size: 90%, 100%;
+    background-position: center center;
+  }
+}
