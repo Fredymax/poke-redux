@@ -62,6 +62,10 @@ body {
   background-position: right center;
 }
 
+.text-capitalize {
+  text-transform: capitalize;
+}
+
 @media (max-width: 767px) {
   .bg-gradient-primary {
     background-size: 90%, 100%;

@@ -1,17 +1,20 @@
 import { CSSProperties } from 'react'
 import { Card, Col } from 'antd'
+import { Pokemon } from '@types'
 
 const { Meta } = Card
 
-// interface Props {}
+interface Props {
+  pokemon: Pokemon
+}
 
 const styles: CSSProperties = {
   maxInlineSize: '400px',
   inlineSize: '100%',
 }
 
-// export const PokemonCard = (props: Props) => {
-export const PokemonCard = () => {
+export const PokemonCard = (props: Props) => {
+  const { pokemon } = props
   return (
     <Col xs={24} sm={12} md={6} xxl={4}>
       <Card
@@ -19,7 +22,7 @@ export const PokemonCard = () => {
         style={styles}
         cover={<img alt="Pokemon" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/133.png" />}
       >
-        <Meta title="Eevee" description="Some description" />
+        <Meta className="text-capitalize" title={pokemon.name} description="Some description" />
       </Card>
     </Col>
   )
