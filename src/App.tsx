@@ -7,43 +7,33 @@ import { PokemonList } from './Components/PokemonList'
 import { Main } from './Components/Main'
 import { fetchPokemon } from '@hooks/usePokemon'
 import type { Pokemon, PokemonState } from '@types'
-import { setPokemons as setPokemonsActions } from '@/Actions'
+import { setPokemons } from '@/Actions'
 
-import { connect } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 
-const { Content } = Layout
+function App() {
+  const pokemons = useSelector((state: PokemonState) => state.results)
+  const dispatch = useDispatch()
 
-interface AppProps {
-  setPokemons: (ev: PokemonState['results']) => void
-  pokemons: PokemonState['results']
-}
-
-function App({ setPokemons, pokemons }: AppProps) {
   useEffect(() => {
     fetchPokemon().then(({ data }) => {
-      setPokemons(data.results)
+      dispatch(setPokemons(data.results))
     })
   }, [])
 
   return (
-    <Content className="main bg-gradient-primary">
-      <Header title="Poke Redux">{/* <InputSearch setValue={setSearch} value={search} /> */}</Header>
+    <Layout.Content className="main bg-gradient-primary">
+      <Header title="Poke Redux">
+        {/* <InputSearch setValue={setSearch} value={search} /> */}
+      </Header>
       <Main>
         <PokemonList title="Pokemon list">
           {!!pokemons.length &&
             pokemons.map((pokemon: Pokemon, index: number) => <PokemonCard key={index} pokemon={pokemon} />)}
         </PokemonList>
       </Main>
-    </Content>
+    </Layout.Content>
   )
 }
 
-const mapStateToProps = (state: PokemonState) => ({
-  pokemons: state.results,
-})
-
-const mapDispatchToProps = (dispatch: any) => ({
-  setPokemons: (value: PokemonState['results']) => dispatch(setPokemonsActions(value)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default App
