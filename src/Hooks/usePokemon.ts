@@ -1,26 +1,22 @@
-import { useState } from 'react'
-import { PokemonResponse } from '@types'
+import { PokemonState } from '@types'
 import axios from '@axios'
+import { AxiosResponse } from 'axios'
 
-export const usePokemon = () => {
-  const [pokemons, setPokemons] = useState<PokemonResponse>()
+interface Params {
+  limit: number
+  offset: number
+}
 
-  const fetchPokemon = async () => {
-    try {
-      const { data } = await axios.get<PokemonResponse>('pokemon', {
-        params: {
-          limit: 10,
-          offset: 0,
-        },
-      })
-      setPokemons(data)
-    } catch (error) {
-      console.log(error)
-    }
+const defaultParams: Params = {
+  limit: 24,
+  offset: 0,
+}
+
+export const fetchPokemon = async (params?: Params): Promise<AxiosResponse<PokemonState>> => {
+  params = {
+    ...params,
+    ...defaultParams,
   }
-
-  return {
-    fetchPokemon,
-    pokemons,
-  }
+  const response = axios.get<PokemonState>('pokemon', { params })
+  return response
 }

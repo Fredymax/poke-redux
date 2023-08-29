@@ -1,4 +1,6 @@
-export interface PokemonResponse {
+export interface PokemonState {
+  search: string
+
   count: number
   next?: string
   previous?: string
@@ -8,4 +10,9 @@ export interface PokemonResponse {
 export interface Pokemon {
   name: string
   url: string
+}
+
+export interface ReducerAction {
+  type: string
+  payload: any
 }
