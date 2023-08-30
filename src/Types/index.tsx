@@ -1,5 +1,6 @@
 export interface PokemonState {
   search: string
+  loading: boolean
 
   count: number
   next?: string
@@ -18,6 +19,7 @@ export interface ReducerAction {
 }
 
 export interface Pokemon {
+  favorite: boolean
   abilities: Ability2[]
   base_experience: number
   forms: any[]

@@ -1,8 +1,7 @@
 import { CSSProperties } from 'react'
-import { Card, Col } from 'antd'
+import { Card, Col, Space, Tag } from 'antd'
 import { Pokemon } from '@types'
-
-const { Meta } = Card
+import { ButtonFavorite } from './ButtonFavorite'
 
 interface PokemonCardProps {
   pokemon: Pokemon
@@ -14,9 +13,9 @@ const styles: CSSProperties = {
 }
 
 export const PokemonCard = ({ pokemon }: PokemonCardProps) => {
-  const { name, sprites } = pokemon
+  const { id, name, sprites, types, favorite = false } = pokemon
   return (
-    <Col xs={24} sm={12} md={6} xxl={4}>
+    <Col xs={24} sm={12} md={6}>
       <Card
         hoverable
         style={styles}
@@ -38,8 +37,25 @@ export const PokemonCard = ({ pokemon }: PokemonCardProps) => {
             />
           </figure>
         }
+        className="text-capitalize"
+        title={name}
+        extra={<ButtonFavorite id={id} favorite={favorite} />}
       >
-        <Meta className="text-capitalize" title={name} description="Some description" />
+        <Card.Meta
+          className="text-capitalize"
+          description={
+            <>
+              <p style={{ marginBlockEnd: '.5rem', fontWeight: 'bold' }}>Types</p>
+              <Space size={[0, 8]} wrap>
+                {types.map((c, index) => (
+                  <Tag color="#87d068" key={index}>
+                    {c.type.name}
+                  </Tag>
+                ))}
+              </Space>
+            </>
+          }
+        />
       </Card>
     </Col>
   )

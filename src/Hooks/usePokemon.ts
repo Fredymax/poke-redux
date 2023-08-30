@@ -21,7 +21,7 @@ export const fetchPokemon = async (params?: Params): Promise<AxiosResponse<Pokem
   return response
 }
 
-export const fetchPokemonData = async (namePokemon: string): Promise<Pokemon> => {
+export const fetchPokemonDatail = async (namePokemon: string): Promise<Pokemon> => {
   const { data } = await axios.get<Pokemon>(`pokemon/${namePokemon}`)
   return data
 }

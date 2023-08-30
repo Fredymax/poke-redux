@@ -35,7 +35,6 @@
 body {
   margin: 0;
   font-size: 16px;
-  overflow: hidden;
 }
 
 .scrollable {
@@ -78,4 +77,39 @@ body {
     background-size: 90%, 100%;
     background-position: right 5vh, center;
   }
+}
+
+.spin {
+  background-color: var(--color-darkblue);
+  padding: 2em;
+  position: fixed;
+  inline-size: 100%;
+  min-block-size: 100vh;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  color: var(--color-yellow);
+  user-select: none;
+  pointer-events: all;
+}
+
+.start {
+  background-color: unset;
+  border: none;
+  outline: none;
+  color: rgb(225 225 225);
+}
+
+.start:hover,
+.start.active {
+  color: var(--color-yellow);
+}
+
+.select-none {
+  user-select: none;
+  pointer-events: none;
+}
+
+.btn {
+  cursor: pointer;
 }

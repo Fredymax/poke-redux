@@ -2,15 +2,16 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import { pokemonsReducer } from '@/Reducers/pokemons'
+// import { logger } from '@/Middlewares'
 
-import { Provider } from 'react-redux'
 import { legacy_createStore as createStore, applyMiddleware } from 'redux'
 import { composeWithDevTools } from '@redux-devtools/extension'
-import { logger } from '@/Middlewares'
+import { Provider } from 'react-redux'
+import thunk from 'redux-thunk'
 
 import './index.css'
 
-const composedEnhancers = composeWithDevTools(applyMiddleware(logger))
+const composedEnhancers = composeWithDevTools(applyMiddleware(thunk))
 const store = createStore(pokemonsReducer, composedEnhancers)
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
