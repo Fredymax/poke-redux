@@ -1,4 +1,4 @@
-import { PokemonState } from '@types'
+import { PokemonState, Pokemon } from '@types'
 import axios from '@axios'
 import { AxiosResponse } from 'axios'
 
@@ -14,9 +14,14 @@ const defaultParams: Params = {
 
 export const fetchPokemon = async (params?: Params): Promise<AxiosResponse<PokemonState>> => {
   params = {
-    ...params,
     ...defaultParams,
+    ...params,
   }
   const response = axios.get<PokemonState>('pokemon', { params })
   return response
+}
+
+export const fetchPokemonData = async (namePokemon: string): Promise<Pokemon> => {
+  const { data } = await axios.get<Pokemon>(`pokemon/${namePokemon}`)
+  return data
 }

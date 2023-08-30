@@ -4,7 +4,7 @@ import { Pokemon } from '@types'
 
 const { Meta } = Card
 
-interface Props {
+interface PokemonCardProps {
   pokemon: Pokemon
 }
 
@@ -13,16 +13,33 @@ const styles: CSSProperties = {
   inlineSize: '100%',
 }
 
-export const PokemonCard = (props: Props) => {
-  const { pokemon } = props
+export const PokemonCard = ({ pokemon }: PokemonCardProps) => {
+  const { name, sprites } = pokemon
   return (
     <Col xs={24} sm={12} md={6} xxl={4}>
       <Card
         hoverable
         style={styles}
-        cover={<img alt="Pokemon" src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/133.png" />}
+        cover={
+          <figure
+            style={{
+              blockSize: '130px',
+              objectFit: 'cover',
+              textAlign: 'center',
+            }}
+          >
+            <img
+              style={{
+                blockSize: '100%',
+                inlineSize: 'auto',
+              }}
+              alt="Pokemon"
+              src={sprites.front_default}
+            />
+          </figure>
+        }
       >
-        <Meta className="text-capitalize" title={pokemon.name} description="Some description" />
+        <Meta className="text-capitalize" title={name} description="Some description" />
       </Card>
     </Col>
   )

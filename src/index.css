@@ -35,6 +35,12 @@
 body {
   margin: 0;
   font-size: 16px;
+  overflow: hidden;
+}
+
+.scrollable {
+  max-block-size: 100vh;
+  block-size: 100%;
 }
 
 .main {
@@ -59,7 +65,8 @@ body {
   background: url('/assets/images/pikachu.png'), linear-gradient(to bottom right, rgb(58 93 169), rgb(29 44 94));
   background-repeat: no-repeat;
   background-size: 35%, 100%;
-  background-position: right center;
+  background-position: right 7.5vh, center;
+  background-attachment: fixed;
 }
 
 .text-capitalize {
@@ -69,6 +76,6 @@ body {
 @media (max-width: 767px) {
   .bg-gradient-primary {
     background-size: 90%, 100%;
-    background-position: center center;
+    background-position: right 5vh, center;
   }
 }
